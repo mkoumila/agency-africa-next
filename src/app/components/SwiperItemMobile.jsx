@@ -68,6 +68,7 @@ const SwiperItemMobile = ({
             publicId={video}
             className=""
             innerRef={videoRefs.current[index]} // Link the ref to the video element
+            poster=""
           />
         </CloudinaryContext>
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-x-5">

@@ -83,6 +83,7 @@ const SwiperItemDesktop = ({
           publicId={video}
           className="h-full w-full object-cover"
           innerRef={videoRefs.current[index]} // Link the ref to the video element
+          poster=""
         />
         <div className="absolute bottom-[88px] left-1/2 -translate-x-1/2 flex items-center gap-x-5">
           <div className="h-9 w-9 border border-white rounded-full flex items-center justify-center group transition-all bg-black bg-opacity-10 hover:bg-white cursor-pointer">
