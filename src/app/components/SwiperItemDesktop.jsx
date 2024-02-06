@@ -5,6 +5,7 @@ import {
 } from "cloudinary-react";
 import { cloudinaryName } from "../data";
 import Image from "next/image";
+import { Animate } from "./Animate";
 
 const SwiperItemDesktop = ({
   title,
@@ -46,16 +47,23 @@ const SwiperItemDesktop = ({
             onClick={() => playVideo(index)}
             className="group cursor-pointer"
           >
-            {title && (
-              <h2 className="text-[100px] font-extrabold group-hover:underline text-center uppercase">
-                {title}
-              </h2>
-            )}
-            {content && (
-              <p className="text-[30px] font-bold leading-[30px] text-center mb-8">
-                {content}
-              </p>
-            )}
+            <Animate
+              animationType="fade"
+              direction="left"
+              cascade
+              triggerOnce={false}
+            >
+              {title && (
+                <h2 className="text-[100px] font-extrabold group-hover:underline text-center uppercase">
+                  {title}
+                </h2>
+              )}
+              {content && (
+                <p className="text-[30px] font-bold leading-[30px] text-center mb-8">
+                  {content}
+                </p>
+              )}
+            </Animate>
           </div>
           <div
             className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl absolute left-1/2 -translate-x-1/2 bottom-[88px] uppercase"
