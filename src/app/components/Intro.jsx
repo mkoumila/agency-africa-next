@@ -25,7 +25,7 @@ const Intro = () => {
             <Image src="/mail.svg" width={23} height={15} alt="Mail us" />
           </Link>
         </div>
-        <div className="flex flex-col lg:flex-row lg:gap-8 lg:justify-between lg:max-w-[1250px] lg:mx-auto lg:items-baseline">
+        <div className="flex flex-col lg:flex-row lg:gap-8 lg:justify-between lg:items-baseline">
           <div className="mb-8">
             <Image
               src="/logo.svg"
@@ -52,7 +52,11 @@ const Intro = () => {
               <span className="font-[1000]"> publicitaire</span> et
               <span className="font-[1000]"> contenu de marque</span> de
               l'agence digitale&nbsp;
-              <Link href="https://wwww.void.fr" className="underline">
+              <Link
+                href="https://www.void.fr"
+                target="_blank"
+                className="underline"
+              >
                 Void
               </Link>
               .
@@ -80,7 +84,7 @@ const Intro = () => {
           href="#slider"
           className="cursor-pointer absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-2"
         >
-          <span className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl">
+          <span className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl uppercase">
             Watch
           </span>
 

@@ -10,7 +10,7 @@ import "swiper/css/hash-navigation";
 
 // import required modules
 import { Pagination, Keyboard, HashNavigation } from "swiper/modules";
-import { createRef, useRef, useState } from "react";
+import { createRef, useEffect, useRef, useState } from "react";
 import { sliderData } from "./data";
 import Intro from "./components/Intro";
 import SwiperPagination from "./components/SwiperPagination";
@@ -61,6 +61,7 @@ const VerticalSlider = ({ data = sliderData }) => {
       setPaginationText(""); // Hide pagination for the first slide
     }
 
+    // Reset the overlay visibility
     setOverlayVisibility(data.map(() => true));
   };
 
@@ -98,13 +99,17 @@ const VerticalSlider = ({ data = sliderData }) => {
                   playVideo={playVideo}
                   videoRefs={videoRefs}
                   isVisible={overlayVisibility[index]} // Pass visibility state
+                  swiperInstance={swiperInstance}
+                  resetOverlayVisibility={() =>
+                    setOverlayVisibility(data.map(() => true))
+                  }
                 />
               </SwiperSlide>
             );
           })}
         </Swiper>
         {/* Pagiation */}
-        {paginationText && (
+        {paginationText && !overlayVisibility.some((el) => el === false) && (
           <SwiperPagination
             swiperInstance={swiperInstance}
             paginationText={paginationText}
