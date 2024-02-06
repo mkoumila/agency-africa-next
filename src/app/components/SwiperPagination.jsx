@@ -24,11 +24,11 @@ const SwiperPagination = ({ swiperInstance, paginationText, className }) => {
         height={20}
         alt="Slide Down"
         className={
-          !(swiperInstance?.realIndex === swiperInstance?.slides.length - 1)
+          !(swiperInstance?.realIndex === swiperInstance?.slides?.length - 1)
             ? "cursor-pointer"
             : "invisible opacity-0"
         }
-        onClick={() => swiperInstance.slideNext()}
+        onClick={() => swiperInstance?.slideNext()}
       />
     </div>
   );

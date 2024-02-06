@@ -54,7 +54,7 @@ const VerticalSlider = ({ data = sliderData }) => {
   // Function to update pagination and reset overlays on slide change
   const updatePagination = (swiper) => {
     const currentIndex = swiper.realIndex;
-    const totalSlides = swiper.slides.length;
+    const totalSlides = swiper?.slides?.length || data.length;
 
     // Conditionally setting the pagination text
     if (currentIndex >= 0) {
@@ -69,6 +69,7 @@ const VerticalSlider = ({ data = sliderData }) => {
     setOverlayVisibility(data.map(() => true));
   };
 
+  // get the current device ( changes of viewport resizing )
   const device = useBreakPoint();
 
   return (
