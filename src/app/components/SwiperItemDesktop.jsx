@@ -5,9 +5,8 @@ import {
 } from "cloudinary-react";
 import { cloudinaryName } from "../data";
 import Image from "next/image";
-import { useState } from "react";
 
-const SwiperItem = ({
+const SwiperItemDesktop = ({
   title,
   content,
   image,
@@ -116,4 +115,4 @@ const SwiperItem = ({
   );
 };
 
-export default SwiperItem;
+export default SwiperItemDesktop;

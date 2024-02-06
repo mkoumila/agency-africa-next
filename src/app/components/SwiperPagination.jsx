@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-const SwiperPagination = ({ swiperInstance, paginationText }) => {
+const SwiperPagination = ({ swiperInstance, paginationText, className }) => {
   return (
-    <div className="custom-pagination-container !hidden lg:!flex">
+    <div className={`custom-pagination-container !hidden ${className}`}>
       <Image
         src="/arrow-up.svg"
         width={20}

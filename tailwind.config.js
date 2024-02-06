@@ -14,6 +14,7 @@ module.exports = {
         "sofia-condensed": ["Sofia Sans Condensed", "sans-serif"],
         sofia: ["Sofia Sans", "sans-serif"],
       },
+      screens: { lgDown: { max: "1023px" } },
     },
   },
   plugins: [],

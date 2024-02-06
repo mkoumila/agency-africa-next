@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const Intro = () => {
+const Intro = ({ setShowSwiper }) => {
   return (
     <div className="lg:bg-silver lg:p-5 lg:h-screen">
-      <div className="bg-white rounded-[32px] h-full p-8 pb-16 md:px-11 md:py-7 relative">
+      <div className="bg-white rounded-[32px] h-full p-8 pb-28 md:px-11 md:py-7 relative">
         <div className="flex items-baseline justify-between md:justify-end md:gap-x-16 mb-16">
           <div className="font-bold text-lg uppercase flex flex-wrap gap-x-3">
             <span>
@@ -34,7 +34,7 @@ const Intro = () => {
               alt="Agency Africa Logo"
               className="w-full mb-4"
             />
-            <div className="font-light uppercase text-3xl lg:text-[40px] lg:leading-[47px]">
+            <div className="font-light uppercase text-[26px] leading-[normal] lg:text-[40px] lg:leading-[47px]">
               <h2>Films institutionnels</h2>
               <h2>campagnes publicitaires</h2>
               <h2>Rapports d'activité d'entreprises</h2>
@@ -82,7 +82,8 @@ const Intro = () => {
 
         <Link
           href="#slider"
-          className="cursor-pointer absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-2"
+          className="cursor-pointer absolute bottom-2 lg:bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-2"
+          onClick={() => setShowSwiper(true)}
         >
           <span className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl uppercase">
             Watch
@@ -90,10 +91,10 @@ const Intro = () => {
 
           <Image
             src="/arrow-down.svg"
-            width={15}
-            height={15}
+            width={20}
+            height={20}
             alt="Go to sliders"
-            className="invert"
+            className="invert animate-bounce"
           />
         </Link>
       </div>

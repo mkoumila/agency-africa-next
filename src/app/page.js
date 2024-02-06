@@ -14,7 +14,9 @@ import { createRef, useEffect, useRef, useState } from "react";
 import { sliderData } from "./data";
 import Intro from "./components/Intro";
 import SwiperPagination from "./components/SwiperPagination";
-import SwiperItem from "./components/SwiperItem";
+import SwiperItemMobile from "./components/SwiperItemMobile";
+import SwiperItemDesktop from "./components/SwiperItemDesktop";
+import { useBreakPoint } from "./hooks/useBreakPoint";
 
 const VerticalSlider = ({ data = sliderData }) => {
   // Swiper Instance
@@ -22,6 +24,8 @@ const VerticalSlider = ({ data = sliderData }) => {
 
   // Pagination state to handle the pagination visibility
   const [paginationText, setPaginationText] = useState("");
+
+  const [showSwiper, setShowSwiper] = useState(false);
 
   // Create an array of refs to store references to the video DOM elements
   const videoRefs = useRef(data.map(() => createRef()));
@@ -65,9 +69,12 @@ const VerticalSlider = ({ data = sliderData }) => {
     setOverlayVisibility(data.map(() => true));
   };
 
+  const device = useBreakPoint();
+
   return (
     <>
-      <Intro />
+      <Intro setShowSwiper={setShowSwiper} />
+
       <div className="relative">
         <Swiper
           cssMode
@@ -80,30 +87,47 @@ const VerticalSlider = ({ data = sliderData }) => {
             updatePagination(swiper);
           }}
           onSlideChange={(swiper) => updatePagination(swiper)}
-          className="h-screen bg-silver"
+          className={`h-screen bg-silver ${showSwiper ? "" : "!hidden"}`}
           id="slider"
         >
           {data.map((item, index) => {
             return (
               <SwiperSlide
-                className="p-5 relative"
+                className="lg:p-5 relative"
                 key={index}
                 data-hash={item.id}
               >
-                <SwiperItem
-                  title={item.title}
-                  content={item.content}
-                  image={item.image}
-                  video={item.video}
-                  index={index}
-                  playVideo={playVideo}
-                  videoRefs={videoRefs}
-                  isVisible={overlayVisibility[index]} // Pass visibility state
-                  swiperInstance={swiperInstance}
-                  resetOverlayVisibility={() =>
-                    setOverlayVisibility(data.map(() => true))
-                  }
-                />
+                {device === "desktop" ? (
+                  <SwiperItemDesktop
+                    title={item.title}
+                    content={item.content}
+                    image={item.image}
+                    video={item.video}
+                    index={index}
+                    playVideo={playVideo}
+                    videoRefs={videoRefs}
+                    isVisible={overlayVisibility[index]} // Pass visibility state
+                    swiperInstance={swiperInstance}
+                    resetOverlayVisibility={() =>
+                      setOverlayVisibility(data.map(() => true))
+                    }
+                  />
+                ) : (
+                  <SwiperItemMobile
+                    title={item.title}
+                    content={item.content}
+                    image={item.image}
+                    video={item.video}
+                    index={index}
+                    playVideo={playVideo}
+                    videoRefs={videoRefs}
+                    isVisible={overlayVisibility[index]} // Pass visibility state
+                    swiperInstance={swiperInstance}
+                    resetOverlayVisibility={() =>
+                      setOverlayVisibility(data.map(() => true))
+                    }
+                  />
+                )}
               </SwiperSlide>
             );
           })}
@@ -113,6 +137,7 @@ const VerticalSlider = ({ data = sliderData }) => {
           <SwiperPagination
             swiperInstance={swiperInstance}
             paginationText={paginationText}
+            className={`${showSwiper ? "lg:!flex" : "!hidden"}`}
           />
         )}
       </div>
