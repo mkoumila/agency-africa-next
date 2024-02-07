@@ -61,23 +61,33 @@ const SwiperItemMobile = ({
           )}
         </Animate>
         {isAward && (
-          <Animate animationType="fade" direction="left" className="absolute left-0 top-[43%] -translate-y-1/2 shadow-lg">
+          <Animate
+            animationType="fade"
+            direction="left"
+            className="absolute left-0 top-[43%] -translate-y-1/2 shadow-lg"
+          >
             <Image
               src="/awards_clapclaptours.png"
               width={362}
               height={125}
               className="w-72 h-auto"
+              alt="awards clapclaptours"
             />
           </Animate>
         )}
         {isStrategiesGrandPrix && (
-          <Animate animationType="fade" direction="left" className="absolute left-0 top-[43%] -translate-y-1/2 shadow-lg">
-          <Image
-            src="/strategies_grand_prix.png"
-            width={250}
-            height={125}
-            className="w-64 h-auto"
-          />
+          <Animate
+            animationType="fade"
+            direction="left"
+            className="absolute left-0 top-[43%] -translate-y-1/2 shadow-lg"
+          >
+            <Image
+              src="/strategies_grand_prix.png"
+              width={250}
+              height={125}
+              className="w-64 h-auto"
+              alt="strategies grand prix"
+            />
           </Animate>
         )}
       </div>

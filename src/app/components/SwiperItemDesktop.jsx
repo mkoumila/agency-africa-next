@@ -80,7 +80,7 @@ const SwiperItemDesktop = ({
             direction="left"
             className="absolute left-0 top-24 shadow-lg"
           >
-            <Image src="/awards_clapclaptours.png" width={362} height={125} />
+            <Image src="/awards_clapclaptours.png" alt="awards clapclaptours" width={362} height={125} />
           </Animate>
         )}
         {isStrategiesGrandPrix && (
@@ -89,7 +89,7 @@ const SwiperItemDesktop = ({
             direction="left"
             className="absolute left-0 top-24 shadow-lg"
           >
-            <Image src="/strategies_grand_prix.png" width={250} height={125} />
+            <Image src="/strategies_grand_prix.png" alt="strategies grand prix" width={250} height={125} />
           </Animate>
         )}
       </div>
