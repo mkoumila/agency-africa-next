@@ -5,6 +5,7 @@ import {
 } from "cloudinary-react";
 import Image from "next/image";
 import { Animate } from "./Animate";
+import Link from "next/link";
 
 const SwiperItemDesktop = ({
   cloudinaryName,
@@ -24,13 +25,13 @@ const SwiperItemDesktop = ({
   // Control the visibility of the overlay using the isVisible prop
   const overlayStyle = { display: isVisible ? "block" : "none" };
 
-  const copyToClipboard = () => {
+  /* const copyToClipboard = () => {
     // Client-side only
     if (typeof window !== "undefined") {
       const url = window.location.href;
       navigator.clipboard.writeText(url);
     }
-  };
+  }; */
 
   return (
     <>
@@ -51,8 +52,9 @@ const SwiperItemDesktop = ({
           >
             <Animate
               animationType="fade"
-              direction="left"
+              direction="down"
               cascade
+              duration={300}
               triggerOnce={false}
             >
               {title && (
@@ -68,7 +70,7 @@ const SwiperItemDesktop = ({
             </Animate>
           </div>
           <div
-            className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl absolute left-1/2 -translate-x-1/2 bottom-[88px] uppercase"
+            className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl absolute left-1/2 -translate-x-1/2 bottom-10 uppercase"
             onClick={() => playVideo(index)}
           >
             PLAY
@@ -80,7 +82,12 @@ const SwiperItemDesktop = ({
             direction="left"
             className="absolute left-0 top-24 shadow-lg"
           >
-            <Image src="/awards_clapclaptours.png" alt="awards clapclaptours" width={362} height={125} />
+            <Image
+              src="/awards_clapclaptours.png"
+              alt="awards clapclaptours"
+              width={362}
+              height={125}
+            />
           </Animate>
         )}
         {isStrategiesGrandPrix && (
@@ -89,7 +96,12 @@ const SwiperItemDesktop = ({
             direction="left"
             className="absolute left-0 top-24 shadow-lg"
           >
-            <Image src="/strategies_grand_prix.png" alt="strategies grand prix" width={250} height={125} />
+            <Image
+              src="/strategies_grand_prix.png"
+              alt="strategies grand prix"
+              width={250}
+              height={125}
+            />
           </Animate>
         )}
       </div>
@@ -105,23 +117,30 @@ const SwiperItemDesktop = ({
           innerRef={videoRefs.current[index]} // Link the ref to the video element
           poster=""
         />
-        <div className="absolute bottom-[88px] left-1/2 -translate-x-1/2 flex items-center gap-x-5">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-x-5">
           <div className="h-9 w-9 border border-white rounded-full flex items-center justify-center group transition-all bg-black bg-opacity-10 hover:bg-white cursor-pointer">
-            <Image
-              src="/share.svg"
-              width={14}
-              height={14}
-              alt="Slide Up"
-              className="group-hover:brightness-0"
-              onClick={() => copyToClipboard()}
-            />
+            <div className="w-full h-full a2a_kit a2a_kit_size_32 a2a_default_style">
+              <Link
+                className="w-full h-full flex items-center justify-center a2a_dd"
+                href="https://www.addtoany.com/share"
+              >
+                <Image
+                  src="/share.svg"
+                  width={14}
+                  height={14}
+                  alt="Slide Up"
+                  className="group-hover:brightness-0"
+                  /* onClick={() => copyToClipboard()} */
+                />
+              </Link>
+            </div>
           </div>
           <div
             className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl uppercase"
             onClick={() =>
               !(swiperInstance?.realIndex === swiperInstance?.slides.length - 1)
                 ? swiperInstance.slideNext()
-                : swiperInstance.slideTo(0)
+                : swiperInstance.slideTo(1)
             }
           >
             NEXT

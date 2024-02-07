@@ -25,8 +25,6 @@ const VerticalSlider = ({ data = sliderData }) => {
   // Pagination state to handle the pagination visibility
   const [paginationText, setPaginationText] = useState("");
 
-  const [showSwiper, setShowSwiper] = useState(false);
-
   // Create an array of refs to store references to the video DOM elements
   const videoRefs = useRef(data.map(() => createRef()));
 
@@ -53,8 +51,8 @@ const VerticalSlider = ({ data = sliderData }) => {
   };
   // Function to update pagination and reset overlays on slide change
   const updatePagination = (swiper) => {
-    const currentIndex = swiper.realIndex;
-    const totalSlides = swiper?.slides?.length || data.length;
+    const currentIndex = swiper.realIndex - 1;
+    const totalSlides = swiper?.slides?.length - 1 || data.length;
 
     // Conditionally setting the pagination text
     if (currentIndex >= 0) {
@@ -74,8 +72,6 @@ const VerticalSlider = ({ data = sliderData }) => {
 
   return (
     <>
-      <Intro setShowSwiper={setShowSwiper} />
-
       <div className="relative">
         <Swiper
           cssMode
@@ -88,9 +84,16 @@ const VerticalSlider = ({ data = sliderData }) => {
             updatePagination(swiper);
           }}
           onSlideChange={(swiper) => updatePagination(swiper)}
-          className={`h-screen bg-silver ${showSwiper ? "" : "!hidden"}`}
+          className={`h-screen transition-all duration-500 ${
+            overlayVisibility.some((el) => el === false)
+              ? "bg-black"
+              : "bg-silver"
+          }`}
           id="slider"
         >
+          <SwiperSlide>
+            <Intro swiperInstance={swiperInstance} />
+          </SwiperSlide>
           {data.map((item, index) => {
             return (
               <SwiperSlide
@@ -144,7 +147,6 @@ const VerticalSlider = ({ data = sliderData }) => {
           <SwiperPagination
             swiperInstance={swiperInstance}
             paginationText={paginationText}
-            className={`${showSwiper ? "lg:!flex" : "!hidden"}`}
           />
         )}
       </div>

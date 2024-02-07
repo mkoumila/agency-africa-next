@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata = {
   title: "Agency Africa",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body>{children}</body>
+      <Script src="https://static.addtoany.com/menu/page.js" />
     </html>
   );
 }

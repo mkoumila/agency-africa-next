@@ -5,6 +5,7 @@ import {
 } from "cloudinary-react";
 import Image from "next/image";
 import { Animate } from "./Animate";
+import Link from "next/link";
 
 const SwiperItemMobile = ({
   cloudinaryName,
@@ -24,13 +25,13 @@ const SwiperItemMobile = ({
   // Control the visibility of the overlay using the isVisible prop
   const overlayStyle = { display: !isVisible ? "flex" : "none" };
 
-  const copyToClipboard = () => {
+  /* const copyToClipboard = () => {
     // Client-side only
     if (typeof window !== "undefined") {
       const url = window.location.href;
       navigator.clipboard.writeText(url);
     }
-  };
+  }; */
 
   return (
     <div className="flex flex-col h-full bg-white relative">
@@ -38,17 +39,17 @@ const SwiperItemMobile = ({
         <CloudinaryImage
           cloudName={cloudinaryName}
           publicId={image}
-          className="absolute top-0 left-0 w-full h-full object-cover brightness-75"
+          className="absolute top-0 left-0 w-full h-full object-cover"
         />
-        <div
-          className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl absolute left-1/2 bottom-1/2 -translate-x-1/2 translate-y-1/2 uppercase shadow-lg"
-          onClick={() => playVideo(index)}
-        >
-          PLAY
-        </div>
       </div>
       <div className="flex-1 flex flex-col items-center justify-center gap-3">
-        <Animate animationType="zoom" cascade triggerOnce={false}>
+        <Animate
+          animationType="fade"
+          direction="down"
+          cascade
+          duration={600}
+          triggerOnce={false}
+        >
           {title && (
             <h2 className="text-4xl font-extrabold text-center uppercase">
               {title}
@@ -60,6 +61,12 @@ const SwiperItemMobile = ({
             </p>
           )}
         </Animate>
+        <div
+          className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl absolute right-4 bottom-4 uppercase shadow-lg"
+          onClick={() => playVideo(index)}
+        >
+          PLAY
+        </div>
         {isAward && (
           <Animate
             animationType="fade"
@@ -106,14 +113,21 @@ const SwiperItemMobile = ({
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-x-5">
           <Animate animationType="fade" direction="up" triggerOnce={false}>
             <div className="h-9 w-9 border border-white rounded-full flex items-center justify-center group transition-all bg-black bg-opacity-10 hover:bg-white cursor-pointer">
-              <Image
-                src="/share.svg"
-                width={14}
-                height={14}
-                alt="Slide Up"
-                className="group-hover:brightness-0"
-                onClick={() => copyToClipboard()}
-              />
+              <div className="w-full h-full a2a_kit a2a_kit_size_32 a2a_default_style">
+                <Link
+                  className="w-full h-full flex items-center justify-center a2a_dd"
+                  href="https://www.addtoany.com/share"
+                >
+                  <Image
+                    src="/share.svg"
+                    width={14}
+                    height={14}
+                    alt="Slide Up"
+                    className="group-hover:brightness-0"
+                    /* onClick={() => copyToClipboard()} */
+                  />
+                </Link>
+              </div>
             </div>
             <div
               className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl uppercase"
@@ -123,7 +137,7 @@ const SwiperItemMobile = ({
                   swiperInstance?.slides.length - 1
                 )
                   ? swiperInstance.slideNext()
-                  : swiperInstance.slideTo(0)
+                  : swiperInstance.slideTo(1)
               }
             >
               NEXT
