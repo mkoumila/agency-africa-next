@@ -3,11 +3,11 @@ import {
   Video,
   Image as CloudinaryImage,
 } from "cloudinary-react";
-import { cloudinaryName } from "../data";
 import Image from "next/image";
 import { Animate } from "./Animate";
 
 const SwiperItemDesktop = ({
+  cloudinaryName,
   title,
   content,
   image,

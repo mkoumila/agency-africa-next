@@ -10,8 +10,8 @@ import "swiper/css/hash-navigation";
 
 // import required modules
 import { Pagination, Keyboard, HashNavigation } from "swiper/modules";
-import { createRef, useEffect, useRef, useState } from "react";
-import { sliderData } from "./data";
+import { createRef, useRef, useState } from "react";
+import { sliderData, cloudinaryName } from "./data";
 import Intro from "./components/Intro";
 import SwiperPagination from "./components/SwiperPagination";
 import SwiperItemMobile from "./components/SwiperItemMobile";
@@ -100,6 +100,7 @@ const VerticalSlider = ({ data = sliderData }) => {
               >
                 {device === "desktop" ? (
                   <SwiperItemDesktop
+                    cloudinaryName={cloudinaryName}
                     title={item.title}
                     content={item.content}
                     image={item.image}
@@ -117,6 +118,7 @@ const VerticalSlider = ({ data = sliderData }) => {
                   />
                 ) : (
                   <SwiperItemMobile
+                    cloudinaryName={cloudinaryName}
                     title={item.title}
                     content={item.content}
                     image={item.image}
