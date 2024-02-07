@@ -104,6 +104,8 @@ const VerticalSlider = ({ data = sliderData }) => {
                     content={item.content}
                     image={item.image}
                     video={item.video}
+                    isAward={item.isAward}
+                    isStrategiesGrandPrix={item.isStrategiesGrandPrix}
                     index={index}
                     playVideo={playVideo}
                     videoRefs={videoRefs}
@@ -119,6 +121,8 @@ const VerticalSlider = ({ data = sliderData }) => {
                     content={item.content}
                     image={item.image}
                     video={item.video}
+                    isAward={item.isAward}
+                    isStrategiesGrandPrix={item.isStrategiesGrandPrix}
                     index={index}
                     playVideo={playVideo}
                     videoRefs={videoRefs}

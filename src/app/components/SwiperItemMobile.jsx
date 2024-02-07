@@ -12,6 +12,8 @@ const SwiperItemMobile = ({
   content,
   image,
   video,
+  isAward,
+  isStrategiesGrandPrix,
   index,
   playVideo,
   videoRefs,
@@ -58,6 +60,26 @@ const SwiperItemMobile = ({
             </p>
           )}
         </Animate>
+        {isAward && (
+          <Animate animationType="fade" direction="left" className="absolute left-0 top-[43%] -translate-y-1/2 shadow-lg">
+            <Image
+              src="/awards_clapclaptours.png"
+              width={362}
+              height={125}
+              className="w-72 h-auto"
+            />
+          </Animate>
+        )}
+        {isStrategiesGrandPrix && (
+          <Animate animationType="fade" direction="left" className="absolute left-0 top-[43%] -translate-y-1/2 shadow-lg">
+          <Image
+            src="/strategies_grand_prix.png"
+            width={250}
+            height={125}
+            className="w-64 h-auto"
+          />
+          </Animate>
+        )}
       </div>
       <div
         className="absolute top-0 left-0 w-full h-full bg-black flex items-center justify-center"

@@ -12,6 +12,8 @@ const SwiperItemDesktop = ({
   content,
   image,
   video,
+  isAward,
+  isStrategiesGrandPrix,
   index,
   playVideo,
   videoRefs,
@@ -45,7 +47,7 @@ const SwiperItemDesktop = ({
         <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
           <div
             onClick={() => playVideo(index)}
-            className="group cursor-pointer"
+            className="group cursor-pointer flex flex-col items-center"
           >
             <Animate
               animationType="fade"
@@ -54,7 +56,7 @@ const SwiperItemDesktop = ({
               triggerOnce={false}
             >
               {title && (
-                <h2 className="text-[100px] font-extrabold group-hover:underline text-center uppercase">
+                <h2 className="w-fit text-[100px] font-extrabold text-center uppercase relative before:absolute before:content-[''] before:bg-white before:h-1 before:left-0 before:bottom-8 before:transition-all before:duration-500 before:w-0 group-hover:before:w-full ">
                   {title}
                 </h2>
               )}
@@ -72,6 +74,24 @@ const SwiperItemDesktop = ({
             PLAY
           </div>
         </div>
+        {isAward && (
+          <Animate
+            animationType="fade"
+            direction="left"
+            className="absolute left-0 top-24 shadow-lg"
+          >
+            <Image src="/awards_clapclaptours.png" width={362} height={125} />
+          </Animate>
+        )}
+        {isStrategiesGrandPrix && (
+          <Animate
+            animationType="fade"
+            direction="left"
+            className="absolute left-0 top-24 shadow-lg"
+          >
+            <Image src="/strategies_grand_prix.png" width={250} height={125} />
+          </Animate>
+        )}
       </div>
 
       {/* Video component */}
