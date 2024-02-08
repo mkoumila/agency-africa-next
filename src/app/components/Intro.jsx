@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const Intro = ({ swiperInstance }) => {
   return (
-    <div className="lg:p-5 lg:h-screen relative">
-      <div className="bg-white lg:rounded-[32px] overflow-y-scroll h-screen lg:h-full p-8 pb-28 md:px-11 md:py-7 flex flex-col">
+    <div className="lg:p-5 lg:h-dvh relative">
+      <div className="bg-white lg:rounded-[32px] overflow-y-scroll h-dvh lg:h-full p-8 pb-28 md:px-11 md:py-7 flex flex-col">
         <div className="flex items-baseline justify-between md:justify-end md:gap-x-16 mb-16">
           <div className="font-bold text-lg uppercase flex flex-wrap gap-x-3">
             <span>

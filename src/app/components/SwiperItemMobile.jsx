@@ -1,8 +1,4 @@
-import {
-  CloudinaryContext,
-  Video,
-  Image as CloudinaryImage,
-} from "cloudinary-react";
+import { CloudinaryContext, Video } from "cloudinary-react";
 import Image from "next/image";
 import { Animate } from "./Animate";
 import Link from "next/link";
@@ -36,10 +32,10 @@ const SwiperItemMobile = ({
   return (
     <div className="flex flex-col h-full bg-white relative">
       <div className="flex-1 relative">
-        <CloudinaryImage
-          cloudName={cloudinaryName}
-          publicId={image}
+        <Image
           className="absolute top-0 left-0 w-full h-full object-cover"
+          src={`https://res.cloudinary.com/${cloudinaryName}/image/upload/f_webp,q_auto/v1/${image}`}
+          fill
         />
       </div>
       <div className="flex-1 flex flex-col items-center justify-center gap-3">

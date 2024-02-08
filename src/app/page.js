@@ -84,7 +84,7 @@ const VerticalSlider = ({ data = sliderData }) => {
             updatePagination(swiper);
           }}
           onSlideChange={(swiper) => updatePagination(swiper)}
-          className={`h-screen transition-all duration-500 ${
+          className={`h-dvh transition-all duration-500 ${
             overlayVisibility.some((el) => el === false)
               ? "bg-black"
               : "bg-silver"

@@ -1,8 +1,4 @@
-import {
-  CloudinaryContext,
-  Video,
-  Image as CloudinaryImage,
-} from "cloudinary-react";
+import { CloudinaryContext, Video } from "cloudinary-react";
 import Image from "next/image";
 import { Animate } from "./Animate";
 import Link from "next/link";
@@ -40,10 +36,10 @@ const SwiperItemDesktop = ({
         className="absolute left-5 top-5 z-10 h-[calc(100%-40px)] w-[calc(100%-40px)] text-white rounded-[32px] overflow-hidden"
         style={overlayStyle}
       >
-        <CloudinaryImage
-          cloudName={cloudinaryName}
-          publicId={image}
+        <Image
           className="absolute top-0 left-0 w-full h-full object-cover brightness-75"
+          src={`https://res.cloudinary.com/${cloudinaryName}/image/upload/f_webp,q_auto/v1/${image}`}
+          fill
         />
         <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
           <div
