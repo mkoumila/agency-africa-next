@@ -2,7 +2,7 @@ import { CloudinaryContext, Transformation, Video } from "cloudinary-react";
 import Image from "next/image";
 import { Animate } from "./Animate";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SwiperItemMobile = ({
   cloudinaryName,
@@ -22,13 +22,27 @@ const SwiperItemMobile = ({
   // Control the visibility of the overlay using the isVisible prop
   const overlayStyle = { display: !isVisible ? "flex" : "none" };
 
-  /* const copyToClipboard = () => {
-    // Client-side only
-    if (typeof window !== "undefined") {
-      const url = window.location.href;
-      navigator.clipboard.writeText(url);
+  useEffect(() => {
+    const videoElement = videoRefs.current[index]?.current;
+    if (videoElement) {
+      videoElement.controls = false; // Attempt to explicitly remove controls
+      videoElement.setAttribute("playsinline", ""); // Encourage inline playback on iOS
+      videoElement.setAttribute("webkit-playsinline", ""); // For older iOS webviews
+      videoElement.removeAttribute("controls"); // Ensure controls attribute is removed
     }
-  }; */
+  }, [index]);
+
+  // Play or pause the video
+  const togglePlayPause = () => {
+    const videoElement = videoRefs.current[index].current;
+    if (videoElement) {
+      if (videoElement.paused || videoElement.ended) {
+        videoElement.play();
+      } else {
+        videoElement.pause();
+      }
+    }
+  };
 
   return (
     <div className="flex flex-col h-full bg-white relative">
@@ -108,6 +122,7 @@ const SwiperItemMobile = ({
             poster=""
             secure="true"
             preload="metadata"
+            onClick={togglePlayPause}
           >
             <Transformation fetchFormat="auto" quality="auto" />
           </Video>

@@ -22,6 +22,28 @@ const SwiperItemDesktop = ({
   // Control the visibility of the overlay using the isVisible prop
   const overlayStyle = { display: isVisible ? "block" : "none" };
 
+  useEffect(() => {
+    const videoElement = videoRefs.current[index]?.current;
+    if (videoElement) {
+      videoElement.controls = false; // Attempt to explicitly remove controls
+      videoElement.setAttribute("playsinline", ""); // Encourage inline playback on iOS
+      videoElement.setAttribute("webkit-playsinline", ""); // For older iOS webviews
+      videoElement.removeAttribute("controls"); // Ensure controls attribute is removed
+    }
+  }, [index]);
+
+  // Play or pause the video
+  const togglePlayPause = () => {
+    const videoElement = videoRefs.current[index].current;
+    if (videoElement) {
+      if (videoElement.paused || videoElement.ended) {
+        videoElement.play();
+      } else {
+        videoElement.pause();
+      }
+    }
+  };
+
   return (
     <>
       {/* Overlay component */}
@@ -108,6 +130,7 @@ const SwiperItemDesktop = ({
           poster=""
           secure="true"
           preload="metadata"
+          onClick={togglePlayPause}
         >
           <Transformation fetchFormat="auto" quality="auto" />
         </Video>
