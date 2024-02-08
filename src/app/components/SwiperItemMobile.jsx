@@ -108,7 +108,6 @@ const SwiperItemMobile = ({
             poster=""
             secure="true"
             preload="metadata"
-            muted
           >
             <Transformation fetchFormat="auto" quality="auto" />
           </Video>
@@ -130,7 +129,7 @@ const Controls = ({
   videoRefs,
   index,
 }) => {
-  const [isMuted, setIsMuted] = useState(true); // Initial mute status
+  const [isMuted, setIsMuted] = useState(false); // Initial mute status
 
   // Adjusted toggleMute function to update state
   const toggleMute = () => {

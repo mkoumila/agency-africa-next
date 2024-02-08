@@ -22,14 +22,6 @@ const SwiperItemDesktop = ({
   // Control the visibility of the overlay using the isVisible prop
   const overlayStyle = { display: isVisible ? "block" : "none" };
 
-  /* const copyToClipboard = () => {
-    // Client-side only
-    if (typeof window !== "undefined") {
-      const url = window.location.href;
-      navigator.clipboard.writeText(url);
-    }
-  }; */
-
   return (
     <>
       {/* Overlay component */}
@@ -116,7 +108,6 @@ const SwiperItemDesktop = ({
           poster=""
           secure="true"
           preload="metadata"
-          muted
         >
           <Transformation fetchFormat="auto" quality="auto" />
         </Video>
@@ -137,7 +128,7 @@ const Controls = ({
   videoRefs,
   index,
 }) => {
-  const [isMuted, setIsMuted] = useState(true); // Initial mute status
+  const [isMuted, setIsMuted] = useState(false); // Initial mute status
 
   // Adjusted toggleMute function to update state
   const toggleMute = () => {
