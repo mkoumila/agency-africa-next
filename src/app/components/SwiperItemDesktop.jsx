@@ -2,7 +2,7 @@ import { CloudinaryContext, Transformation, Video } from "cloudinary-react";
 import Image from "next/image";
 import { Animate } from "./Animate";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SwiperItemDesktop = ({
   cloudinaryName,
@@ -140,8 +140,38 @@ const Controls = ({
     }
   };
 
+  // Controls visibility
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    let timer;
+
+    const handleMouseMove = () => {
+      clearTimeout(timer); // Clear the previous timer on mouse move
+      setIsVisible(true); // Make sure the div is visible when the mouse moves
+
+      // Set a new timer to hide the div after 3 seconds of inactivity
+      timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 3000);
+    };
+
+    // Add event listener to the whole document to track mouse movement
+    document.addEventListener("mousemove", handleMouseMove);
+
+    // Cleanup function to remove the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      clearTimeout(timer); // Also clear the timer to prevent it from running after component unmounts
+    };
+  }, []);
+
   return (
-    <div className="absolute bottom-10 left-[calc(50%+28px)] -translate-x-1/2 flex items-center gap-x-5">
+    <div
+      className={`absolute bottom-10 left-[calc(50%+28px)] -translate-x-1/2 flex items-center gap-x-5 transition-all duration-500 ${
+        isVisible ? "opacity-100" : "opacity-0 invisible"
+      }`}
+    >
       <div className="h-9 w-9 border border-white rounded-full flex items-center justify-center group transition-all bg-black bg-opacity-10 hover:bg-white cursor-pointer">
         <div className="w-full h-full a2a_kit a2a_kit_size_32 a2a_default_style">
           <Link
