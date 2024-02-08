@@ -1,4 +1,4 @@
-import { CloudinaryContext, Video } from "cloudinary-react";
+import { CloudinaryContext, Transformation, Video } from "cloudinary-react";
 import Image from "next/image";
 import { Animate } from "./Animate";
 import Link from "next/link";
@@ -39,6 +39,7 @@ const SwiperItemDesktop = ({
         <Image
           className="absolute top-0 left-0 w-full h-full object-cover brightness-75"
           src={`https://res.cloudinary.com/${cloudinaryName}/image/upload/f_webp,q_auto/v1/${image}`}
+          alt={image}
           fill
         />
         <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
@@ -112,7 +113,11 @@ const SwiperItemDesktop = ({
           className="h-full w-full object-cover"
           innerRef={videoRefs.current[index]} // Link the ref to the video element
           poster=""
-        />
+          secure="true"
+          preload="metadata"
+        >
+          <Transformation fetchFormat="auto" quality="auto" />
+        </Video>
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-x-5">
           <div className="h-9 w-9 border border-white rounded-full flex items-center justify-center group transition-all bg-black bg-opacity-10 hover:bg-white cursor-pointer">
             <div className="w-full h-full a2a_kit a2a_kit_size_32 a2a_default_style">
