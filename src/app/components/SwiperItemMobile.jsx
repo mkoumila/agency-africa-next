@@ -2,6 +2,7 @@ import { CloudinaryContext, Transformation, Video } from "cloudinary-react";
 import Image from "next/image";
 import { Animate } from "./Animate";
 import Link from "next/link";
+import { useState } from "react";
 
 const SwiperItemMobile = ({
   cloudinaryName,
@@ -107,51 +108,85 @@ const SwiperItemMobile = ({
             poster=""
             secure="true"
             preload="metadata"
+            muted
           >
             <Transformation fetchFormat="auto" quality="auto" />
           </Video>
         </CloudinaryContext>
-        <div className="absolute bottom-4 right-4 flex flex-col items-center gap-[10px]">
-          <div className="h-9 w-9 border border-white rounded-full flex items-center justify-center group transition-all bg-black bg-opacity-10 hover:bg-white cursor-pointer order-1">
-            <div className="w-full h-full a2a_kit a2a_kit_size_32 a2a_default_style">
-              <Link
-                className="w-full h-full flex items-center justify-center a2a_dd"
-                href="https://www.addtoany.com/share"
-              >
-                <Image
-                  src="/share.svg"
-                  width={14}
-                  height={14}
-                  alt="Slide Up"
-                  className="group-hover:brightness-0"
-                  /* onClick={() => copyToClipboard()} */
-                />
-              </Link>
-            </div>
-          </div>
-          <div
-            className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl uppercase order-2"
-            onClick={() =>
-              !(swiperInstance?.realIndex === swiperInstance?.slides.length - 1)
-                ? swiperInstance.slideNext()
-                : swiperInstance.slideTo(1)
-            }
-          >
-            NEXT
-          </div>
-          <div
-            className="h-9 w-9 border border-white rounded-full flex items-center justify-center group transition-all bg-black bg-opacity-10 hover:bg-white cursor-pointer"
-            onClick={() => resetOverlayVisibility()}
+        <Controls
+          swiperInstance={swiperInstance}
+          resetOverlayVisibility={resetOverlayVisibility}
+          videoRefs={videoRefs}
+          index={index}
+        />
+      </div>
+    </div>
+  );
+};
+
+const Controls = ({
+  swiperInstance,
+  resetOverlayVisibility,
+  videoRefs,
+  index,
+}) => {
+  const [isMuted, setIsMuted] = useState(true); // Initial mute status
+
+  // Adjusted toggleMute function to update state
+  const toggleMute = () => {
+    const videoElement = videoRefs.current[index].current;
+    if (videoElement) {
+      const currentMuteStatus = videoElement.muted;
+      videoElement.muted = !currentMuteStatus;
+      setIsMuted(!currentMuteStatus); // Update state to reflect change
+    }
+  };
+
+  return (
+    <div className="absolute bottom-4 right-4 flex flex-col items-center gap-[10px]">
+      <div
+        className="h-9 w-9 border border-white rounded-full flex items-center justify-center transition-all bg-black bg-opacity-10 cursor-pointer"
+        onClick={() => toggleMute()}
+      >
+        <Image
+          src={isMuted ? "/sound-off.svg" : "/sound-on.svg"} // Conditional image source based on mute status
+          width={20}
+          height={20}
+          alt={isMuted ? "Sound off" : "Sound on"}
+        />
+      </div>
+      <div
+        className="h-9 w-9 border border-white rounded-full flex items-center justify-center transition-all bg-black bg-opacity-10 cursor-pointer"
+        onClick={() => resetOverlayVisibility()}
+      >
+        <Image src="/close.svg" width={14} height={14} alt="Slide Up" />
+      </div>
+      <div className="h-9 w-9 border border-white rounded-full flex items-center justify-center transition-all bg-black bg-opacity-10 cursor-pointer">
+        <div className="w-full h-full a2a_kit a2a_kit_size_32 a2a_default_style">
+          <Link
+            className="w-full h-full flex items-center justify-center a2a_dd"
+            href="https://www.addtoany.com/share"
           >
             <Image
-              src="/close.svg"
+              src="/share.svg"
               width={14}
               height={14}
               alt="Slide Up"
-              className="group-hover:brightness-0"
+
+              /* onClick={() => copyToClipboard()} */
             />
-          </div>
+          </Link>
         </div>
+      </div>
+      <div
+        className="flex h-[67px] w-[67px] cursor-pointer items-center justify-center rounded-full bg-bloody text-white font-extrabold leading-[47px] text-xl uppercase"
+        onClick={() =>
+          !(swiperInstance?.realIndex === swiperInstance?.slides.length - 1)
+            ? swiperInstance.slideNext()
+            : swiperInstance.slideTo(1)
+        }
+      >
+        NEXT
       </div>
     </div>
   );
