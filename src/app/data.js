@@ -154,7 +154,7 @@ export const sliderData = [
     title: "Groupe CDG",
     content:
       "Vidéo en motion design pour la Caisse de Dépôt et de Gestion du Maroc",
-    image: "agency_africa/thumbnails/cdg_capital",
+    image: "agency_africa/thumbnails/groupe_cgd_film",
     video: "agency_africa/videos/film_cgd_fr",
     id: "groupe-cdg",
     isAward: false,
